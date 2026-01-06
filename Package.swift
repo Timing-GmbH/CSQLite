@@ -295,6 +295,12 @@ let package = Package(
 				// For statically linking extensions
 				// https://sqlite.org/loadext.html#statically_linking_a_run_time_loadable_extension
 				.define("SQLITE_CORE", to: "1"),
+				// https://sqlite.org/limits.html#max_variable_number
+				// Timing-specific: Increased from default (999-32766) to support long filter queries
+				.define("SQLITE_MAX_VARIABLE_NUMBER", to: "200000000"),
+				// https://sqlite.org/compile.html#default_page_size
+				// Timing-specific: Set default page size to 4096 bytes
+				.define("SQLITE_DEFAULT_PAGE_SIZE", to: "4096"),
 			],
 			linkerSettings: [
 				.linkedLibrary("m"),

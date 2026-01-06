@@ -27,7 +27,8 @@ let compileTimeOptions: [CSetting] = [
 	.define("SQLITE_DQS", to: "2", .when(traits: ["DQS_2"])),
 	.define("SQLITE_DQS", to: "3", .when(traits: ["DQS_3"])),
 	// https://sqlite.org/compile.html#threadsafe
-	.define("SQLITE_THREADSAFE", to: "0", .when(traits: ["THREADSAFE_0"])),
+	// DISABLED: Timing uses SQLite from multiple threads - use default THREADSAFE=1
+	// .define("SQLITE_THREADSAFE", to: "0", .when(traits: ["THREADSAFE_0"])),
 	.define("SQLITE_THREADSAFE", to: "1", .when(traits: ["THREADSAFE_1"])),
 	.define("SQLITE_THREADSAFE", to: "2", .when(traits: ["THREADSAFE_2"])),
 	// https://sqlite.org/compile.html#default_memstatus
@@ -265,7 +266,7 @@ let package = Package(
 		// Default traits
 		.default(enabledTraits: [
 			"DQS_0",
-			"THREADSAFE_0",
+			// "THREADSAFE_0",  // REMOVED: Timing uses SQLite from multiple threads
 			"DEFAULT_MEMSTATUS_0",
 			"DEFAULT_WAL_SYNCHRONOUS_1",
 			"LIKE_DOESNT_MATCH_BLOBS",

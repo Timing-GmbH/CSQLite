@@ -266,7 +266,7 @@ let package = Package(
 		// Default traits
 		.default(enabledTraits: [
 			"DQS_0",
-			// "THREADSAFE_0",  // REMOVED: Timing uses SQLite from multiple threads
+			"THREADSAFE_1",  // Explicit thread-safe mode (Timing uses multiple threads)
 			"DEFAULT_MEMSTATUS_0",
 			"DEFAULT_WAL_SYNCHRONOUS_1",
 			"LIKE_DOESNT_MATCH_BLOBS",

@@ -49,7 +49,8 @@ let compileTimeOptions: [CSetting] = [
 	// https://sqlite.org/compile.html#use_alloca
 	.define("SQLITE_USE_ALLOCA", .when(traits: ["USE_ALLOCA"])),
 	// https://sqlite.org/compile.html#omit_autoinit
-	.define("SQLITE_OMIT_AUTOINIT", .when(traits: ["OMIT_AUTOINIT"])),
+	// DISABLED: SQLite.swift expects automatic initialization - this flag breaks it
+	// .define("SQLITE_OMIT_AUTOINIT", .when(traits: ["OMIT_AUTOINIT"])),
 	// https://sqlite.org/compile.html#strict_subtype
 	.define("SQLITE_STRICT_SUBTYPE", to: "1", .when(traits: ["STRICT_SUBTYPE_1"])),
 ]
@@ -274,7 +275,7 @@ let package = Package(
 			"OMIT_PROGRESS_CALLBACK",
 			"OMIT_SHARED_CACHE",
 			"USE_ALLOCA",
-			"OMIT_AUTOINIT",
+			// "OMIT_AUTOINIT",  // REMOVED: SQLite.swift expects automatic initialization
 			"STRICT_SUBTYPE_1",
 			"ENABLE_CARRAY",
 			"ENABLE_FTS5",
